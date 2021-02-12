@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_doctors_details,hosptality_management.doctors_details,model_doctors_details,base.group_user,1,1,1,1
+access_patients_details,hosptality_management.patients_details,model_patients_details,base.group_user,1,1,1,1
+access_wards_details,hosptality_management.wards_details,model_wards_details,base.group_user,1,1,1,1
+access_patientspersonal_details,hosptality_management.patientspersonal_details,model_patientspersonal_details,base.group_user,1,1,1,1
+access_doctorsspersonal_details,hosptality_management.doctorsspersonal_details,model_doctorsspersonal_details,base.group_user,1,1,1,1
+access_managestaff_details,hosptality_management.managestaff_details,model_managestaff_details,base.group_user,1,1,1,1

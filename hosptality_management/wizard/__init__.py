@@ -1,0 +1,2 @@
+from .import patient_detail_wizard
+from .import doctors_detail_wizard

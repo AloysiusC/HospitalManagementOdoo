@@ -1,0 +1,76 @@
+<odoo>doctors
+  <data>
+    <!-- explicit list view definition -->
+      <record model="ir.ui.view" id="ward_tree_view">
+      <field name="name">ward_tree_view</field>
+      <field name="model">wards.details</field>
+      <field name="arch" type="xml">
+        <tree>
+            <field name="name"/>
+            <field name="ward_no"/>
+            <field name="doct_name"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="hosptality_management_ward_form_view">
+      <field name="name">hosptality_management_ward_form_view</field>
+      <field name="model">wards.details</field>
+      <field name="arch" type="xml">
+          <form>
+              <header>
+                  <button name="custom_method" string="ORM Methods" type="object"/>
+              </header>
+              <sheet>
+                  <group>
+                      <group>
+                          <field name="name"/>
+                          <field name="ward_no"/>
+                      </group>
+                      <group>
+                          <field name="doct_name"/>
+                      </group>
+                  </group>
+              </sheet>
+          </form>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="ward_action">
+      <field name="name">Ward window</field>
+      <field name="res_model">wards.details</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="hosptality_management.action_server">
+      <field name="name">Hosptality_management server</field>
+      <field name="model_id" ref="model_hosptality_management_hosptality_management"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+
+    <menuitem name="Hospital Management" id="hosptality_management_root_menu"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Wards" id="wards_menu" parent="hosptality_management_root_menu"/>
+
+    <!-- actions -->
+
+    <menuitem name="Ward detail" id="ward_detail_menu" parent="wards_menu"
+              action="ward_action"/>
+
+  </data>
+</odoo>

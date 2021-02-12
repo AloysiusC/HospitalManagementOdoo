@@ -1,0 +1,112 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <record model="ir.ui.view" id="hosptality_management_tree_view">
+      <field name="name">hosptality_management_tree_view</field>
+      <field name="model">doctors.details</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="designation"/>
+          <field name="age"/>
+          <field name="gender"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+      <record model="ir.ui.view" id="hosptality_management_patient_form_view">
+      <field name="name">hosptality_management_patient_form_view</field>
+      <field name="model">doctors.details</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+            <button name="hosptality_management.doctor_wizard_action" string="Update Doctors" type="action"/>
+          </header>
+          <sheet>
+            <group string="Doctors Info">
+              <group>
+                <field name="name"/>
+                <field name="designation"/>
+              </group>
+              <group>
+                <field name="age"/>
+                <field name="gender"/>
+              </group>
+              <group>
+                <field name="pat_select"/>
+              </group>
+            </group>
+            <notebook>
+              <page string="Doctors detail">
+                <group>
+                  <field name="pat_assg">
+                    <tree>
+                      <field name="patient_name"/>
+                      <field name="status"/>
+                    </tree>
+                  </field>
+                </group>
+
+              </page>
+            </notebook>
+
+          </sheet>
+        </form>
+
+      </field>
+    </record>
+
+
+
+    <record model="ir.actions.act_window" id="doctor_action">
+      <field name="name">Doctors window</field>
+      <field name="res_model">doctors.details</field>
+      <field name="view_mode">tree,form</field>
+      <field name="context">{'search_default_F': 1}</field>
+    </record>
+
+<!--    <record model="ir.action.act_window" id="doctors_details_new">-->
+<!--      <field name="name">Doctors window</field>-->
+<!--&lt;!&ndash;    <field name="type">ir.actions.act.window</field>&ndash;&gt;-->
+<!--      <field name="res_model">doctors.details</field>-->
+<!--&lt;!&ndash;     <field name="view_type">form</field>&ndash;&gt;-->
+<!--      <field name="view_mode">form,tree</field>-->
+<!--      <field name="context">{'default_gender': 'female'}</field>-->
+<!--    </record>-->
+
+
+
+
+
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="hosptality_management.action_server">
+      <field name="name">Hosptality_management server</field>
+      <field name="model_id" ref="model_hosptality_management_hosptality_management"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+
+    <menuitem name="Hospital Management" id="hosptality_management_root_menu" />
+
+    <!-- menu categories -->
+
+    <menuitem name="Doctors" id="doctor_menu" parent="hosptality_management_root_menu"/>
+
+<!--    &lt;!&ndash; actions &ndash;&gt;-->
+
+    <menuitem name="Doctors detail" id="doc_detail_menu" parent="doctor_menu" action="doctor_action"/>
+
+  </data>
+</odoo>

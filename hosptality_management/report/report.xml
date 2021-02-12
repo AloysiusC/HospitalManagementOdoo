@@ -1,0 +1,11 @@
+<odoo>
+        <!-- QWeb Reports -->
+        <report
+            id="patient_details_report"
+            model="patients.details"
+            string="Print Patient details"
+            report_type="qweb-html"
+            name="hosptality_management.print_patient_details"
+            file="hosptality_management.print_patient_details"
+        />
+</odoo>

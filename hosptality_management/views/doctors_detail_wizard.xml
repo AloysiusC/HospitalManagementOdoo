@@ -1,0 +1,19 @@
+<odoo>
+    <record model="ir.ui.view" id="hosptality_management_doctor_wizard_form_view">
+      <field name="name">hosptality_management_doctor_wizard_form_view</field>
+      <field name="model">doctors.wizard</field>
+      <field name="arch" type="xml">
+        <form string="Doctors Wizard">
+            <button special="cancel" string="Cancel" type="object" />
+            <field name="patient_name"/>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="doctor_wizard_action">
+      <field name="name">Doctors Wizard</field>
+      <field name="res_model">doctors.wizard</field>
+      <field name="view_mode">form</field>
+      <field name="target">new</field>
+    </record>
+</odoo>

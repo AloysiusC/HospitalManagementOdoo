@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="send_prop_email" model="mail.template">
+        <field name="name">Approval:Send Email</field>
+        <field name="subject">For Approval</field>
+        <field name="email_from">${user.email}</field>
+        <field name="email_to">${object.respon_person.email}</field>
+        <field name="lang">${user.lang}</field>
+        <field name="model_id" ref="realestate.model_property_maintenance"/>
+        <field name="auto_delete" eval="True"/>
+        <field name="body_html"><![CDATA[
+                <p>Dear ${object.respon_person.name},</p>
+                <p>
+                    Kindly Approve the property record "${object.number}"created on
+                    "${object.date}"
+                </p>
+                <p>Best regards,
+                    <br/>
+                </p>
+]]>
+        </field>
+    </record>
+
+</odoo>

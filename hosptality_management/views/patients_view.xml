@@ -1,0 +1,145 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <record model="ir.ui.view" id="hosptality_management_patient_tree_view">
+      <field name="name">hosptality_management_patient_tree_view</field>
+      <field name="model">patients.details</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="disease"/>
+          <field name="age"/>
+          <field name="gender"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="hosptality_management_patient_form_view">
+      <field name="name">hosptality_management_patient_form_view</field>
+      <field name="model">patients.details</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+            <button name="hosptality_management.patient_wizard_action" string="Update Patient" type="action"/>
+          </header>
+          <sheet>
+            <group string="Patient Info">
+              <group>
+                <field name="name"/>
+                <field name="f_name"/>
+                <field name="l_name"/>
+                <field name="disease"/>
+              </group>
+              <group>
+                <field name="age"/>
+                <field name="gender"/>
+              </group>
+              <group>
+                <field name="doct_select" widget="many2many_tags"/>
+                <field name="doc_head"/>
+                <field name="job_position"/>
+              </group>
+            </group>
+            <notebook>
+              <page string="Patient detail">
+                <group>
+                  <field name="doc_assg">
+                    <tree>
+                      <field name="ward_name"/>
+                      <field name="fees"/>
+                    </tree>
+                  </field>
+                </group>
+
+              </page>
+            </notebook>
+
+          </sheet>
+        </form>
+
+      </field>
+    </record>
+
+
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="patient_action">
+      <field name="name">Patients window</field>
+      <field name="res_model">patients.details</field>
+      <field name="view_mode">tree,form</field>
+      <field name="context">{'search_default_filter_name': 1}</field>
+    </record>
+
+
+
+
+    <!-- server action to the one above -->
+    <!--
+        <record model="ir.actions.server" id="hosptality_management.action_server">
+          <field name="name">Hosptality_management server</field>
+          <field name="model_id" ref="model_hosptality_management_hosptality_management"/>
+          <field name="state">code</field>
+          <field name="code">
+            action = {
+              "type": "ir.actions.act_window",
+              "view_mode": "tree,form",
+              "res_model": model._name,
+            }
+          </field>
+        </record>
+    -->
+
+    <!-- Top menu item -->
+
+    <menuitem name="Hospital Management" id="hosptality_man
+    agement_root_menu"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Patients" id="patients_menu" parent="hosptality_management_root_menu"/>
+
+    <!-- actions -->
+    <menuitem name="Patients detail" id="patients_detail_menu" parent="patients_menu"
+              action="patient_action"/>
+
+    <record model="ir.ui.view" id="super_sale_god">
+      <field name="name">super.sale.god</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='payment_term_id']" position="after">
+          <field name="Flex"/>
+        </xpath>
+      </field>
+    </record>
+
+  <record id="student_search_view" model="ir.ui.view">
+    <field name="name">doctors.details</field>
+    <field name="model">doctors.details</field>
+    <field name="arch" type="xml">
+       <search string="Search Student">
+<!--           <field name="name_filter"/>-->
+<!--           <field name="age_filter"/>-->
+           <field name="nationality"/>
+           <filter string="Male" name="M" domain="[('gender','=','M')]" help="Students with gender as Male"/>
+           <filter string="Female" name="F" domain="[('gender','=','F')]" help="Students with gender as Female"/>
+           <group expand="1" string="Group By">
+               <filter string="Nationality" name="nationality" context="{'group_by':'nationality'}"/>
+           </group>
+<!--         <filter string="Future" name="search_default_gender" context="{'search_default_gender':'F'}"/>-->
+       </search>
+    </field>
+  </record>
+
+<!--   <record model="ir.actions.act_window" id="doctors_details_new">-->
+<!--    <field name="name">doctors.details.new</field>-->
+<!--    <field name="type">ir.actions.act.window</field>-->
+<!--     <field name="res_model">doctors.details</field>-->
+<!--&lt;!&ndash;     <field name="view_type">form</field>&ndash;&gt;-->
+<!--     <field name="view_mode">form,tree</field>-->
+<!--    <field name="context">{'default_gender': 'female'}</field>-->
+<!--  </record>-->
+
+  </data>
+</odoo>

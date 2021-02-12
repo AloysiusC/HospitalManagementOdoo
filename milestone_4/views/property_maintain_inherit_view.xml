@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="property_maintain_form_inherit">
+            <field name="name">property.maintain.form.inherit</field>
+            <field name="model">property.maintenance</field>
+            <field name="inherit_id" ref="realestate.property_maintenance_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='type']" position="after">
+                    <field name="type_maintain" options="{'no_create_edit': True}" widget="many2many_tags"/>
+                </xpath>
+                <xpath expr="//button[@name ='start_maint']" position="after">
+                    <button name="pass_data" string="pass data" type="object"/>
+                </xpath>
+                <xpath expr="//button[@name ='start_maint']" position="after">
+                    <button name ="approve_state" string="Need Approval" type="object" groups="milestone_4.group_property_user"
+                            class="btn-primary" attrs="{'invisible': [('state','!=','approval')]}"/>
+                </xpath>
+                <xpath expr="//field[@name='state']" position="replace">
+                    <field name="state" widget="statusbar" statusbar_visible="draft,approval,progress,done"/>
+                </xpath>
+                <xpath expr="//field[@name='date']" position="after">
+                    <field name="need_approval"/>
+                </xpath>
+                 <xpath expr="//field[@name='need_approval']" position="after">
+                    <field name="respon_person"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="property_maintain_tree_inherit">
+            <field name="name">property.maintain.tree.inherit</field>
+            <field name="model">property.maintenance</field>
+            <field name="inherit_id" ref="realestate.property_maintenance_view_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree//field[@name='type']" position="after">
+                    <field name="type_maintain" options="{'no_quick_create':True}" widget="many2many_tags"/>
+                </xpath>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="property_maintain_search_inherit">
+            <field name="name">property.maintain.search.inherit</field>
+            <field name="model">property.maintenance</field>
+            <field name="inherit_id" ref="realestate.property_maintenance_view_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='draft']" position="after">
+                    <filter string="Approval" name="approval" domain="[('state','=','approval')]"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

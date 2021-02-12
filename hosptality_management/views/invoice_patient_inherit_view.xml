@@ -1,0 +1,41 @@
+<odoo>
+    <data>
+        <record id="invoice_detail_form_view" model="ir.ui.view">
+            <field name="name">invoice.detail.form.view</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="doct_invoice_detail"/>
+                </xpath>
+                <!--                <notebook position="inside">-->
+                <!--                    <page name="Hobbies">-->
+                <!--                        <field name="hobby"/>-->
+                <!--                    </page>-->
+                <!--                </notebook>-->
+                <xpath expr="/form/sheet/notebook//page[@name='purchase_delivery_invoice']" position="after">
+                    <page name="Hobbies" string="Hobbies">
+                        <group>
+                            <field name="hobby"></field>
+                        </group>
+                    </page>
+                </xpath>
+<!--                <xpath expr="//field[@name='date_order']" position="attributes">-->
+<!--                    <attribute name="invisible">1</attribute>-->
+<!--                </xpath>-->
+
+
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="invoice_patient_action">
+            <field name="name">Invoice patient</field>
+            <field name="res_model">purchase.order</field>
+            <field name="view_mode">tree,form,kanban</field>
+        </record>
+
+        <menuitem name="Patients invoice detail" id="invoice_patient_detail" parent="hosptality_management.patients_menu"
+                  action="invoice_patient_action"/>
+
+    </data>
+</odoo>
+
